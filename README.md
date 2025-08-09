@@ -32,7 +32,7 @@ This is a sample Android project demonstrating the use of Spinner, RadioButton, 
 - `User.kt` - Parcelable data class for passing user info.
 - `DataHolder.kt` - Singleton for shared data.
 - `res/layout/` - XML layouts for activities and fragments.
-- `res/drawable/flags/` - Country flag images.
+- `app/flags/` - Country flag images.
 
 ## How to Run
 
