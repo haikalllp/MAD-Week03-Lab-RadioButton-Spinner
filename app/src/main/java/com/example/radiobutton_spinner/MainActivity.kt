@@ -1,5 +1,6 @@
 package com.example.radiobutton_spinner
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -46,6 +47,29 @@ class MainActivity : AppCompatActivity() {
 
             // Optionally, show Toast
             Toast.makeText(this, "Selected: $selectedCountry, $selectedGender", Toast.LENGTH_SHORT).show()
+
+            // Create an Intent to start SecondActivity
+            val intent = Intent(this, SecondActivity::class.java)
+
+            // ✅ 1. Using Intent Extras
+            intent.putExtra("country_key", selectedCountry)
+            intent.putExtra("gender_key", selectedGender)
+
+            // ✅ 2. Using Bundle
+            val bundle = Bundle()
+            bundle.putString("bundle_country_key", selectedCountry)
+            bundle.putString("bundle_gender_key", selectedGender)
+            intent.putExtras(bundle)
+
+            // ✅ 3. Using Parcelable
+            val user = User(selectedCountry, selectedGender)
+            intent.putExtra("user_key", user)
+
+            // ✅ 4. Using Singleton
+            DataHolder.country = selectedCountry
+            DataHolder.gender = selectedGender
+
+            startActivity(intent)
         }
     }
 }
