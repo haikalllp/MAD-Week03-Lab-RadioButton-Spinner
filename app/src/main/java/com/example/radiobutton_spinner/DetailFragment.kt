@@ -25,15 +25,15 @@ class DetailFragment : Fragment() {
         countryText.text = country
         genderText.text = gender
 
-        // Example: Set image based on country (placeholder logic)
-        val flagRes = when (country) {
+        // Set flag image based on country
+        val flags = when (country) {
             "Australia" -> R.drawable.australia
             "India" -> R.drawable.india
             "USA" -> R.drawable.usa
             "Canada" -> R.drawable.canada
             else -> R.drawable.ic_launcher_foreground
         }
-        imageView.setImageResource(flagRes)
+        imageView.setImageResource(flags)
 
         return view
     }

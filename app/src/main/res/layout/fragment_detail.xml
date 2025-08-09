@@ -1,55 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00b897"
+    android:background="#ffffff"
     android:padding="32dp">
 
-    <ImageView
-        android:id="@+id/imageViewFlag"
-        android:layout_width="200dp"
-        android:layout_height="120dp"
-        android:contentDescription="Country Flag"
-        android:src="@drawable/ic_launcher_foreground"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="top">
 
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        android:layout_marginTop="32dp" />
+        <ImageView
+            android:id="@+id/imageViewFlag"
+            android:layout_width="140dp"
+            android:layout_height="80dp"
+            android:layout_gravity="top|center_vertical"
+            android:layout_marginEnd="24dp"
+            android:contentDescription="Country Flag"
+            android:src="@drawable/ic_launcher_foreground" />
 
-    <TextView
-        android:id="@+id/textViewCountry"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Country"
-        android:textAllCaps="true"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="top|center_vertical">
 
-        app:layout_constraintTop_toBottomOf="@id/imageViewFlag"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="16dp" />
+            <TextView
+                android:id="@+id/textViewCountry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Country"
+                android:textAllCaps="true"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginBottom="16dp" />
 
-    <TextView
-        android:id="@+id/textViewGender"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Gender"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
+            <TextView
+                android:id="@+id/textViewGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Gender"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </LinearLayout>
 
-        app:layout_constraintTop_toBottomOf="@id/textViewCountry"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
