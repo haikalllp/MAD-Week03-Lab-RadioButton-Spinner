@@ -51,21 +51,21 @@ class MainActivity : AppCompatActivity() {
             // Create an Intent to start SecondActivity
             val intent = Intent(this, SecondActivity::class.java)
 
-            // ✅ 1. Using Intent Extras
+            // Using Intent Extras
             intent.putExtra("country_key", selectedCountry)
             intent.putExtra("gender_key", selectedGender)
 
-            // ✅ 2. Using Bundle
+            // Using Bundle
             val bundle = Bundle()
             bundle.putString("bundle_country_key", selectedCountry)
             bundle.putString("bundle_gender_key", selectedGender)
             intent.putExtras(bundle)
 
-            // ✅ 3. Using Parcelable
+            // Using Parcelable
             val user = User(selectedCountry, selectedGender)
             intent.putExtra("user_key", user)
 
-            // ✅ 4. Using Singleton
+            // Using Singleton
             DataHolder.country = selectedCountry
             DataHolder.gender = selectedGender
 
