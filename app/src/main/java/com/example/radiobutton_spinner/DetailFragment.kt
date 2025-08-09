@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 
+// DetailFragment displays the selected country and gender, and shows the country flag
 class DetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_detail, container, false)
         val imageView = view.findViewById<ImageView>(R.id.imageViewFlag)
         val countryText = view.findViewById<TextView>(R.id.textViewCountry)
@@ -22,6 +24,7 @@ class DetailFragment : Fragment() {
         val country = DataHolder.country
         val gender = DataHolder.gender
 
+        // Set country and gender text
         countryText.text = country
         genderText.text = gender
 
@@ -38,4 +41,3 @@ class DetailFragment : Fragment() {
         return view
     }
 }
-

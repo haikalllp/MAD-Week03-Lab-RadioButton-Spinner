@@ -4,28 +4,28 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
+// SecondActivity hosts the Summary and Detail fragments and manages navigation between them
 class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_second)
 
-        // Retain fragments on configuration changes
+        // Retain fragments on configuration changes (handled by FragmentManager)
         supportFragmentManager.fragmentFactory = supportFragmentManager.fragmentFactory
 
         // Initialize buttons
         val btnSummary = findViewById<android.widget.Button>(R.id.btnSummary)
         val btnDetail = findViewById<android.widget.Button>(R.id.btnDetail)
 
-        // Show the default fragment on the first creation
+        // Show the default fragment (DetailFragment) on the first creation only
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainer, DetailFragment())
                 .commit()
         }
 
-        // Switch to summary fragment on button click if not already displayed
-        // When switching add to back stack to allow navigation back
+        // Switch to SummaryFragment if not already displayed, and add to back stack
         btnSummary.setOnClickListener {
             val currentFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
             if (currentFragment !is SummaryFragment) {
@@ -36,7 +36,7 @@ class SecondActivity : AppCompatActivity() {
             }
         }
 
-        // Switch to detail fragment on button click if not already displayed
+        // Switch to DetailFragment if not already displayed, and add to back stack
         btnDetail.setOnClickListener {
             val currentFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
             if (currentFragment !is DetailFragment) {

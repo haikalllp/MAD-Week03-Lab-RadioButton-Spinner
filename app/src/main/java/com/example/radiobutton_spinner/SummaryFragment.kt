@@ -7,15 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 
 /**
- * A simple [Fragment] subclass.
- * Use the [SummaryFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * SummaryFragment displays all the ways data can be passed from MainActivity to SecondActivity.
+ * It demonstrates reading data from Intent extras, Bundle, Parcelable, and Singleton.
  */
 class SummaryFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_summary, container, false)
         val summary = view.findViewById<android.widget.TextView>(R.id.textViewSummary)
 
@@ -37,6 +37,7 @@ class SummaryFragment : Fragment() {
         val singletonCountry = DataHolder.country
         val singletonGender = DataHolder.gender
 
+        // Build a summary string showing all data sources
         val displaySummary = """
             From Intent Extra:
             Country = $countryFromIntent
@@ -55,6 +56,7 @@ class SummaryFragment : Fragment() {
             Gender = $singletonGender
         """.trimIndent()
 
+        // Display the summary in the TextView
         summary.text = displaySummary
         return view
     }

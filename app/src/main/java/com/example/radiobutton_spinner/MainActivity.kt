@@ -14,11 +14,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
+// MainActivity allows the user to select a country and gender, then submit the data
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
+        // Initialize UI components
         val spinner = findViewById<Spinner>(R.id.spinnerCountry)
         val radioGroup = findViewById<RadioGroup>(R.id.radioGroupGender)
         val btnSubmit = findViewById<Button>(R.id.btnSubmit)
@@ -29,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
 
+        // Handle submit button click
         btnSubmit.setOnClickListener {
             // Get selected country
             val selectedCountry = spinner.selectedItem.toString()
@@ -41,34 +45,35 @@ class MainActivity : AppCompatActivity() {
                 "Not selected"
             }
 
-            // Log values
+            // Log values for debugging
             Log.d("UserInput", "Country: $selectedCountry")
             Log.d("UserInput", "Gender: $selectedGender")
 
-            // Optionally, show Toast
+            // Optionally, show Toast to user
             Toast.makeText(this, "Selected: $selectedCountry, $selectedGender", Toast.LENGTH_SHORT).show()
 
             // Create an Intent to start SecondActivity
             val intent = Intent(this, SecondActivity::class.java)
 
-            // Using Intent Extras
+            // Pass data using Intent Extras
             intent.putExtra("country_key", selectedCountry)
             intent.putExtra("gender_key", selectedGender)
 
-            // Using Bundle
+            // Pass data using Bundle
             val bundle = Bundle()
             bundle.putString("bundle_country_key", selectedCountry)
             bundle.putString("bundle_gender_key", selectedGender)
             intent.putExtras(bundle)
 
-            // Using Parcelable
+            // Pass data using Parcelable
             val user = User(selectedCountry, selectedGender)
             intent.putExtra("user_key", user)
 
-            // Using Singleton
+            // Pass data using Singleton
             DataHolder.country = selectedCountry
             DataHolder.gender = selectedGender
 
+            // Start SecondActivity
             startActivity(intent)
         }
     }
