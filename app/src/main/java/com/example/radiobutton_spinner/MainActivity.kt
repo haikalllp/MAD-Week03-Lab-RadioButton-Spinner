@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Spinner
@@ -25,6 +26,9 @@ class MainActivity : AppCompatActivity() {
         val spinner = findViewById<Spinner>(R.id.spinnerCountry)
         val radioGroup = findViewById<RadioGroup>(R.id.radioGroupGender)
         val btnSubmit = findViewById<Button>(R.id.btnSubmit)
+        val etName = findViewById<EditText>(R.id.etName)
+        val etAge = findViewById<EditText>(R.id.etAge)
+        val etAddress = findViewById<EditText>(R.id.etAddress)
 
         // Setup Spinner with sample data
         val countries = listOf("Australia", "India", "USA", "Canada")
@@ -45,7 +49,15 @@ class MainActivity : AppCompatActivity() {
                 "Not selected"
             }
 
+            // Get entered name, age, and address
+            val name = etName.text.toString()
+            val age = etAge.text.toString().toIntOrNull() ?: 0
+            val address = etAddress.text.toString()
+
             // Log values for debugging
+            Log.d("UserInput", "Name: $name")
+            Log.d("UserInput", "Age: $age")
+            Log.d("UserInput", "Address: $address")
             Log.d("UserInput", "Country: $selectedCountry")
             Log.d("UserInput", "Gender: $selectedGender")
 
@@ -56,20 +68,29 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SecondActivity::class.java)
 
             // Pass data using Intent Extras
+            intent.putExtra("name_key", name)
+            intent.putExtra("age_key", age)
+            intent.putExtra("address_key", address)
             intent.putExtra("country_key", selectedCountry)
             intent.putExtra("gender_key", selectedGender)
 
             // Pass data using Bundle
             val bundle = Bundle()
+            bundle.putString("bundle_name_key", name)
+            bundle.putInt("bundle_age_key", age)
+            bundle.putString("bundle_address_key", address)
             bundle.putString("bundle_country_key", selectedCountry)
             bundle.putString("bundle_gender_key", selectedGender)
             intent.putExtras(bundle)
 
             // Pass data using Parcelable
-            val user = User(selectedCountry, selectedGender)
+            val user = User(name, age, address, selectedCountry, selectedGender)
             intent.putExtra("user_key", user)
 
             // Pass data using Singleton
+            DataHolder.name = name
+            DataHolder.age = age
+            DataHolder.address = address
             DataHolder.country = selectedCountry
             DataHolder.gender = selectedGender
 

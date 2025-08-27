@@ -8,5 +8,10 @@ import kotlinx.parcelize.Parcelize
 // Holds the selected country and gender
 // Implements Parcelable for easy transfer via Intent
 // Example: intent.putExtra("user_key", user)
-data class User(val country: String,
-                val gender: String): Parcelable
+data class User(
+    val name: String,
+    val age: Int,
+    val address: String,
+    val country: String,
+    val gender: String
+) : Parcelable
